@@ -7,5 +7,38 @@
   <body>
     <h1>Wisdom Daily</h1>
     <p>Two quotes. One thread. Daily reflection.</p>
+
+    <div id="quote-container">
+      <!-- quotes will appear here -->
+    </div>
+
+    <script src="quotes.js"></script>
+    <script>
+      // Pick today's pair based on the date
+      const today = new Date();
+      const dayOfYear = Math.floor(
+        (today - new Date(today.getFullYear(), 0, 0)) / 86400000
+      );
+      const pair = quotePairs[dayOfYear % quotePairs.length];
+
+      // Build the HTML to display
+      const container = document.getElementById("quote-container");
+      container.innerHTML = `
+        <h2>Today's Thread: ${pair.theme}</h2>
+
+        <blockquote>
+          <p>"${pair.quotes[0].text}"</p>
+          <footer>${pair.quotes[0].author} — ${pair.quotes[0].tradition}, ${pair.quotes[0].year}</footer>
+        </blockquote>
+
+        <blockquote>
+          <p>"${pair.quotes[1].text}"</p>
+          <footer>${pair.quotes[1].author} — ${pair.quotes[1].tradition}, ${pair.quotes[1].year}</footer>
+        </blockquote>
+
+        <h3>Reflect</h3>
+        <p>${pair.reflection}</p>
+      `;
+    </script>
   </body>
 </html>
