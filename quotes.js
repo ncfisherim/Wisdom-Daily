@@ -16,7 +16,7 @@ const quotePairs = [
       }
     ],
     reflection: "Where in your life are you trying to control something outside yourself?"
-  }
+  },
   {
     theme: "Faith",
     quotes: [
