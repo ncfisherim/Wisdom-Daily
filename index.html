@@ -10,7 +10,7 @@
       <p class="site-title">Wisdom Daily</p>
       <p class="date" id="date"></p>
       <div id="quote-container"></div>
-      <button onclick="loadRandom()">Generate new quotes</button>
+      <button onclick="loadRandom()">Random pair</button>
     </div>
 
     <script src="quotes.js"></script>
@@ -44,12 +44,19 @@
           (today - new Date(today.getFullYear(), 0, 0)) / 86400000
         );
         displayPair(quotePairs[dayOfYear % quotePairs.length]);
+        currentIndex = dayOfYear % quotePairs.length;
       }
 
-      function loadRandom() {
-        const randomIndex = Math.floor(Math.random() * quotePairs.length);
+      let currentIndex = null;
+
+        function loadRandom() {
+        let randomIndex;
+        do {
+            randomIndex = Math.floor(Math.random() * quotePairs.length);
+        } while (randomIndex === currentIndex);
+        currentIndex = randomIndex;
         displayPair(quotePairs[randomIndex]);
-      }
+        }
 
       loadDaily();
     </script>
